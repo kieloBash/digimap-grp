@@ -13,6 +13,7 @@ import { Loader2, PlusCircle, ShipWheelIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { stitchImage } from "./stitch";
 
 const InputForm = () => {
   const [imageSrc1, setImageSrc1] = useState<string | undefined>();
@@ -56,7 +57,7 @@ const InputForm = () => {
     if (!imageSrc1 || !imageSrc2) return;
     setisLoading(true);
     console.log("STITCHING");
-    const stitchedImage = "default";
+    const stitchedImage = await stitchImage(imageSrc1, imageSrc2);
     router.push(`/result/${stitchedImage}`);
   }
 
